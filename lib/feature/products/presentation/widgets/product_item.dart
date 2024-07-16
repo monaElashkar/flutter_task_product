@@ -4,14 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_task/core/util/style.dart';
+import 'package:flutter_task/feature/products/data/models/product_model.dart';
 import '../../../../core/util/app_colors.dart';
 import '../../../../core/util/app_images.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({super.key});
+  final int index;
+  final ProductsModel? productModel;
+  const ProductItem({super.key,required this.index,required this.productModel});
 
   @override
   Widget build(BuildContext context) {
+    var product = productModel?.products?[index];
+    String? discount;
+    if (product?.discountPercentage != null) {
+      discount = (product!.price! -
+          (product.price! * (product.discountPercentage! / 100)))
+          .toStringAsFixed(2);
+    }
     return InkWell(
       onTap: () {},
       child: Container(
@@ -33,7 +43,7 @@ class ProductItem extends StatelessWidget {
                       ),
                     ),
                     child: CachedNetworkImage(
-                        imageUrl:"",
+                        imageUrl: product?.images?.first ?? "",
                         fit: BoxFit.contain,
                         width: double.infinity,
                         height: 191.h,
@@ -79,13 +89,13 @@ class ProductItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "titlestitlestitlestitlestitles",
+                    product?.title ?? "",
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: AppStyle.cardStyle,
                   ),
                   Text(
-                    "descdescdescdescdescdescdescdescdescdescdescdesc",
+                    product?.description ?? "",
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: AppStyle.cardStyle,
@@ -106,14 +116,14 @@ class ProductItem extends StatelessWidget {
                               ),
                               const SizedBox(width: 2),
                               Text(
-                                "200",
+                                discount ?? "",
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: AppStyle.cardStyle,
                               ),
                               const SizedBox(width: 8),
                               Text(
-                                "200",
+                                "${product?.price ?? ''}",
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: AppStyle.discountStyle,
@@ -126,7 +136,7 @@ class ProductItem extends StatelessWidget {
                           child: Row(
                             children: [
                               Text(
-                                "Review (2.5)",
+                                "Review (${product?.rating ?? ""})",
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: AppStyle.reviewStyle,

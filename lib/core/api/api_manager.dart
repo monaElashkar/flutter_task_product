@@ -11,7 +11,6 @@ class ApiManager {
 
     );
   }
-
   Future<Response> getData(String endPoint, {Map<String, dynamic>? param, Map<String, dynamic>? header}) {
     return dio.get(Constants.baseURL + endPoint, queryParameters: param,
         options: Options(headers: header));

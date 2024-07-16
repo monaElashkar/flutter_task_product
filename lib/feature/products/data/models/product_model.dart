@@ -1,11 +1,12 @@
-class ProductModel {
-  ProductModel({
-      this.products, 
-      this.total, 
-      this.skip, 
-      this.limit,});
+class ProductsModel {
+  ProductsModel({
+    this.products,
+    this.total,
+    this.skip,
+    this.limit,
+  });
 
-  ProductModel.fromJson(dynamic json) {
+  ProductsModel.fromJson(dynamic json) {
     if (json['products'] != null) {
       products = [];
       json['products'].forEach((v) {
@@ -20,59 +21,50 @@ class ProductModel {
   int? total;
   int? skip;
   int? limit;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    if (products != null) {
-      map['products'] = products?.map((v) => v.toJson()).toList();
-    }
-    map['total'] = total;
-    map['skip'] = skip;
-    map['limit'] = limit;
-    return map;
-  }
-
 }
 
 class Products {
   Products({
-      this.id, 
-      this.title, 
-      this.description, 
-      this.category, 
-      this.price, 
-      this.discountPercentage, 
-      this.rating, 
-      this.stock, 
-      this.tags, 
-      this.brand, 
-      this.sku, 
-      this.weight, 
-      this.dimensions, 
-      this.warrantyInformation, 
-      this.shippingInformation, 
-      this.availabilityStatus, 
-      this.reviews, 
-      this.returnPolicy, 
-      this.minimumOrderQuantity, 
-      this.meta, 
-      this.images, 
-      this.thumbnail,});
+    this.id,
+    this.title,
+    this.description,
+    this.category,
+    this.price,
+    this.discountPercentage,
+    this.rating,
+    this.stock,
+    this.tags,
+    this.brand,
+    this.sku,
+    this.weight,
+    this.dimensions,
+    this.warrantyInformation,
+    this.shippingInformation,
+    this.availabilityStatus,
+    this.reviews,
+    this.returnPolicy,
+    this.minimumOrderQuantity,
+    this.meta,
+    this.images,
+    this.thumbnail,
+  });
 
   Products.fromJson(dynamic json) {
     id = json['id'];
     title = json['title'];
     description = json['description'];
     category = json['category'];
-    price = json['price'];
-    discountPercentage = json['discountPercentage'];
-    rating = json['rating'];
+    price = json['price'] * 1.0;
+    discountPercentage = json['discountPercentage'] * 1.0;
+    rating = json['rating'] * 1.0;
     stock = json['stock'];
     tags = json['tags'] != null ? json['tags'].cast<String>() : [];
     brand = json['brand'];
     sku = json['sku'];
     weight = json['weight'];
-    dimensions = json['dimensions'] != null ? Dimensions.fromJson(json['dimensions']) : null;
+    dimensions = json['dimensions'] != null
+        ? Dimensions.fromJson(json['dimensions'])
+        : null;
     warrantyInformation = json['warrantyInformation'];
     shippingInformation = json['shippingInformation'];
     availabilityStatus = json['availabilityStatus'];
@@ -83,7 +75,7 @@ class Products {
       });
     }
     returnPolicy = json['returnPolicy'];
-    minimumOrderQuantity = json['minimumOrderQuantity'];
+    minimumOrderQuantity = json['minimumOrderQuantity'] * 1.0;
     meta = json['meta'] != null ? Meta.fromJson(json['meta']) : null;
     images = json['images'] != null ? json['images'].cast<String>() : [];
     thumbnail = json['thumbnail'];
@@ -106,52 +98,19 @@ class Products {
   String? availabilityStatus;
   List<Reviews>? reviews;
   String? returnPolicy;
-  int? minimumOrderQuantity;
+  double? minimumOrderQuantity;
   Meta? meta;
   List<String>? images;
   String? thumbnail;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = id;
-    map['title'] = title;
-    map['description'] = description;
-    map['category'] = category;
-    map['price'] = price;
-    map['discountPercentage'] = discountPercentage;
-    map['rating'] = rating;
-    map['stock'] = stock;
-    map['tags'] = tags;
-    map['brand'] = brand;
-    map['sku'] = sku;
-    map['weight'] = weight;
-    if (dimensions != null) {
-      map['dimensions'] = dimensions?.toJson();
-    }
-    map['warrantyInformation'] = warrantyInformation;
-    map['shippingInformation'] = shippingInformation;
-    map['availabilityStatus'] = availabilityStatus;
-    if (reviews != null) {
-      map['reviews'] = reviews?.map((v) => v.toJson()).toList();
-    }
-    map['returnPolicy'] = returnPolicy;
-    map['minimumOrderQuantity'] = minimumOrderQuantity;
-    if (meta != null) {
-      map['meta'] = meta?.toJson();
-    }
-    map['images'] = images;
-    map['thumbnail'] = thumbnail;
-    return map;
-  }
-
 }
 
 class Meta {
   Meta({
-      this.createdAt, 
-      this.updatedAt, 
-      this.barcode, 
-      this.qrCode,});
+    this.createdAt,
+    this.updatedAt,
+    this.barcode,
+    this.qrCode,
+  });
 
   Meta.fromJson(dynamic json) {
     createdAt = json['createdAt'];
@@ -172,63 +131,44 @@ class Meta {
     map['qrCode'] = qrCode;
     return map;
   }
-
 }
 
 class Reviews {
   Reviews({
-      this.rating, 
-      this.comment, 
-      this.date, 
-      this.reviewerName, 
-      this.reviewerEmail,});
+    this.rating,
+    this.comment,
+    this.date,
+    this.reviewerName,
+    this.reviewerEmail,
+  });
 
   Reviews.fromJson(dynamic json) {
-    rating = json['rating'];
+    rating = json['rating'] * 1.0;
     comment = json['comment'];
     date = json['date'];
     reviewerName = json['reviewerName'];
     reviewerEmail = json['reviewerEmail'];
   }
-  int? rating;
+  double? rating;
   String? comment;
   String? date;
   String? reviewerName;
   String? reviewerEmail;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['rating'] = rating;
-    map['comment'] = comment;
-    map['date'] = date;
-    map['reviewerName'] = reviewerName;
-    map['reviewerEmail'] = reviewerEmail;
-    return map;
-  }
-
 }
 
 class Dimensions {
   Dimensions({
-      this.width, 
-      this.height, 
-      this.depth,});
+    this.width,
+    this.height,
+    this.depth,
+  });
 
   Dimensions.fromJson(dynamic json) {
-    width = json['width'];
-    height = json['height'];
-    depth = json['depth'];
+    width = json['width'] * 1.0;
+    height = json['height'] * 1.0;
+    depth = json['depth'] * 1.0;
   }
   double? width;
   double? height;
   double? depth;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['width'] = width;
-    map['height'] = height;
-    map['depth'] = depth;
-    return map;
-  }
-
 }
