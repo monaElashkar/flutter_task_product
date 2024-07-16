@@ -19,10 +19,7 @@ class Products extends StatelessWidget {
       create: (context) =>
       getIt<ProductsBloc>()
         ..add(const GetProductsEvent()),
-      child: BlocConsumer<ProductsBloc, ProductsState>(
-        listener: (context, state) {
-          // TODO: implement listener
-        },
+      child: BlocBuilder<ProductsBloc, ProductsState>(
         builder: (context, state) {
           return Scaffold(
               backgroundColor: AppColors.backGround,

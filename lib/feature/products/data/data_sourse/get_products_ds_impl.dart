@@ -1,6 +1,5 @@
 import 'package:flutter_task/core/api/api_manager.dart';
 import 'package:flutter_task/feature/products/data/models/product_model.dart';
-import 'package:flutter_task/feature/products/presentation/bloc/products_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/api/end_points.dart';
 import 'get_products_ds.dart';
