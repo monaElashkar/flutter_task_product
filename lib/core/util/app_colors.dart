@@ -6,4 +6,5 @@ class AppColors {
   static const blackFont = Color(0xff000000);
   static Color blueColor = const Color(0XFF004182);
   static Color yellowColor = const Color(0XFFF4B400);
+  static Color fontColor = const Color(0XFF06004F);
 }

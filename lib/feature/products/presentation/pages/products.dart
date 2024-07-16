@@ -5,6 +5,7 @@ import 'package:flutter_task/core/util/app_images.dart';
 import '../../../../core/util/app_colors.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/custom_search_field.dart';
+import '../widgets/product_item.dart';
 
 class Products extends StatelessWidget {
   const Products({super.key});
@@ -39,7 +40,27 @@ class Products extends StatelessWidget {
                 ],
               ),
             ),
-
+            SizedBox(height: 15.h,),
+            Expanded(
+              child: GridView.builder(
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return ProductItem();
+                },
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 16,
+                  crossAxisSpacing: 16,
+                  mainAxisExtent: 237,
+                ),
+                padding: const EdgeInsets.only(
+                  left: 10,
+                  right: 10,
+                  top: 10,
+                  bottom: 10,
+                ),
+              ),
+            ),
           ],
         ));
   }
